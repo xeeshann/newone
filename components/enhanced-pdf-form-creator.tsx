@@ -38,21 +38,21 @@ const LOGO_SIZE = 50
 const LOGO_MARGIN = 20
 
 const themes = {
-  light: { bg: 'bg-white', text: 'text-gray-900', field: 'bg-white', border: 'border-gray-300', pdfBg: [1, 1, 1], pdfText: [0, 0, 0], pdfField: [0.98, 0.98, 0.98] },
-  dark: { bg: 'bg-gray-900', text: 'text-white', field: 'bg-gray-800', border: 'border-gray-700', pdfBg: [0.1, 0.1, 0.1], pdfText: [1, 1, 1], pdfField: [0.2, 0.2, 0.2] },
-  blue: { bg: 'bg-blue-100', text: 'text-blue-900', field: 'bg-blue-50', border: 'border-blue-300', pdfBg: [0.9, 0.95, 1], pdfText: [0, 0, 0.6], pdfField: [0.95, 0.97, 1] },
-  green: { bg: 'bg-green-100', text: 'text-green-900', field: 'bg-green-50', border: 'border-green-300', pdfBg: [0.9, 1, 0.9], pdfText: [0, 0.5, 0], pdfField: [0.95, 1, 0.95] },
-  purple: { bg: 'bg-purple-100', text: 'text-purple-900', field: 'bg-purple-50', border: 'border-purple-300', pdfBg: [0.98, 0.9, 1], pdfText: [0.5, 0, 0.5], pdfField: [0.99, 0.95, 1] },
-  'blue-gradient': { bg: 'bg-gradient-to-r from-blue-400 to-blue-600', text: 'text-white', field: 'bg-blue-100', border: 'border-blue-300', pdfBg: [0.6, 0.8, 1], pdfText: [1, 1, 1], pdfField: [0.8, 0.9, 1] },
-  'green-gradient': { bg: 'bg-gradient-to-r from-green-400 to-green-600', text: 'text-white', field: 'bg-green-100', border: 'border-green-300', pdfBg: [0.6, 1, 0.6], pdfText: [1, 1, 1], pdfField: [0.8, 1, 0.8] },
-  'purple-gradient': { bg: 'bg-gradient-to-r from-purple-400 to-purple-600', text: 'text-white', field: 'bg-purple-100', border: 'border-purple-300', pdfBg: [0.8, 0.6, 1], pdfText: [1, 1, 1], pdfField: [0.9, 0.8, 1] },
+  light: { bg: 'bg-white', text: 'text-gray-900', field: 'bg-white', border: 'border-gray-300', pdfBg: [1, 1, 1] as [number, number, number], pdfText: [0, 0, 0] as [number, number, number], pdfField: [0.98, 0.98, 0.98] as [number, number, number] },
+  dark: { bg: 'bg-gray-900', text: 'text-white', field: 'bg-gray-800', border: 'border-gray-700', pdfBg: [0.1, 0.1, 0.1] as [number, number, number], pdfText: [1, 1, 1] as [number, number, number], pdfField: [0.2, 0.2, 0.2] as [number, number, number] },
+  blue: { bg: 'bg-blue-100', text: 'text-blue-900', field: 'bg-blue-50', border: 'border-blue-300', pdfBg: [0.9, 0.95, 1] as [number, number, number], pdfText: [0, 0, 0.6] as [number, number, number], pdfField: [0.95, 0.97, 1] as [number, number, number] },
+  green: { bg: 'bg-green-100', text: 'text-green-900', field: 'bg-green-50', border: 'border-green-300', pdfBg: [0.9, 1, 0.9] as [number, number, number], pdfText: [0, 0.5, 0] as [number, number, number], pdfField: [0.95, 1, 0.95] as [number, number, number] },
+  purple: { bg: 'bg-purple-100', text: 'text-purple-900', field: 'bg-purple-50', border: 'border-purple-300', pdfBg: [0.98, 0.9, 1] as [number, number, number], pdfText: [0.5, 0, 0.5] as [number, number, number], pdfField: [0.99, 0.95, 1] as [number, number, number] },
+  'blue-gradient': { bg: 'bg-gradient-to-r from-blue-400 to-blue-600', text: 'text-white', field: 'bg-blue-100', border: 'border-blue-300', pdfBg: [0.6, 0.8, 1] as [number, number, number], pdfText: [1, 1, 1] as [number, number, number], pdfField: [0.8, 0.9, 1] as [number, number, number] },
+  'green-gradient': { bg: 'bg-gradient-to-r from-green-400 to-green-600', text: 'text-white', field: 'bg-green-100', border: 'border-green-300', pdfBg: [0.6, 1, 0.6] as [number, number, number], pdfText: [1, 1, 1] as [number, number, number], pdfField: [0.8, 1, 0.8] as [number, number, number] },
+  'purple-gradient': { bg: 'bg-gradient-to-r from-purple-400 to-purple-600', text: 'text-white', field: 'bg-purple-100', border: 'border-purple-300', pdfBg: [0.8, 0.6, 1] as [number, number, number], pdfText: [1, 1, 1] as [number, number, number], pdfField: [0.9, 0.8, 1] as [number, number, number] },
 }
 
 const fontStyles = {
   'helvetica': StandardFonts.Helvetica,
   'helvetica-bold': StandardFonts.HelveticaBold,
   'times-roman': StandardFonts.TimesRoman,
-  'times-bold': StandardFonts.TimesBold,
+  'times-bold': StandardFonts.TimesRomanBold,
   'courier': StandardFonts.Courier,
   'courier-bold': StandardFonts.CourierBold,
 }
@@ -62,7 +62,7 @@ const FormElementComponent: React.FC<{
   onDelete: (id: string) => void
   onDuplicate: (id: string) => void
   onUpdateProperties: (id: string, updates: Partial<FormElement>) => void
-  theme: string
+  theme: keyof typeof themes
   fontStyle: string
 }> = ({ element, onDelete, onDuplicate, onUpdateProperties, theme, fontStyle }) => {
   const renderElement = () => {
@@ -198,7 +198,7 @@ export function EnhancedPdfFormCreator() {
   const [downloadProgress, setDownloadProgress] = useState(0)
   const [isDownloading, setIsDownloading] = useState(false)
   const [error, setError] = useState<string | null>(null)
-  const [formTheme, setFormTheme] = useState('light')
+  const [formTheme, setFormTheme] = useState<keyof typeof themes>('light')
   const [fontStyle, setFontStyle] = useState('helvetica')
   const [logo, setLogo] = useState<File | null>(null)
   const canvasRef = useRef<HTMLDivElement>(null)
@@ -259,7 +259,7 @@ export function EnhancedPdfFormCreator() {
       const page = pdfDoc.addPage([CANVAS_WIDTH, CANVAS_HEIGHT])
       const form = pdfDoc.getForm()
 
-      const fontName = fontStyles[fontStyle] || StandardFonts.Helvetica
+      const fontName = fontStyles[fontStyle as keyof typeof fontStyles] || StandardFonts.Helvetica
       const font = await pdfDoc.embedFont(fontName)
 
       const { pdfBg, pdfText, pdfField } = themes[formTheme]
@@ -268,7 +268,7 @@ export function EnhancedPdfFormCreator() {
         y: 0,
         width: CANVAS_WIDTH,
         height: CANVAS_HEIGHT,
-        color: rgb(...pdfBg),
+        color: rgb(...pdfBg as [number, number, number]),
       })
 
       // Add logo if available
@@ -428,7 +428,11 @@ export function EnhancedPdfFormCreator() {
       return new Blob([pdfBytes], { type: 'application/pdf' })
     } catch (error) {
       console.error('Error generating PDF:', error)
-      setError(`An error occurred while generating the PDF: ${error.message}`)
+      if (error instanceof Error) {
+        setError(`An error occurred while generating the PDF: ${error.message}`)
+      } else {
+        setError('An unknown error occurred while generating the PDF.')
+      }
       throw error
     } finally {
       setIsDownloading(false)
@@ -447,7 +451,11 @@ export function EnhancedPdfFormCreator() {
       URL.revokeObjectURL(url)
     } catch (error) {
       console.error('Error in downloadPDF:', error)
-      setError(`An error occurred while downloading the PDF: ${error.message}. Please try again.`)
+      if (error instanceof Error) {
+        setError(`An error occurred while downloading the PDF: ${error.message}. Please try again.`)
+      } else {
+        setError('An unknown error occurred while downloading the PDF. Please try again.')
+      }
     }
   }, [generatePDF])
 
@@ -532,7 +540,7 @@ export function EnhancedPdfFormCreator() {
               </div>
               <div className="space-y-2">
                 <Label htmlFor="form-theme">Form Theme</Label>
-                <Select value={formTheme} onValueChange={setFormTheme}>
+                <Select value={formTheme} onValueChange={(value) => setFormTheme(value as keyof typeof themes)}>
                   <SelectTrigger id="form-theme">
                     <SelectValue placeholder="Select a theme" />
                   </SelectTrigger>
@@ -567,10 +575,10 @@ export function EnhancedPdfFormCreator() {
               <div className="space-y-2">
                 <Label htmlFor="logo-upload">Upload Logo</Label>
                 <div className="flex items-center space-x-2">
-                  <Button onClick={() => fileInputRef.current?.click()} variant="outline">
+                    <Button onClick={() => fileInputRef.current?.click()} variant="outline">
                     <Image className="h-4 w-4 mr-2" />
                     {logo ? 'Change Logo' : 'Upload Logo'}
-                  </Button>
+                    </Button>
                   {logo && (
                     <Button onClick={() => setLogo(null)} variant="outline" className="text-red-500">
                       Remove Logo
@@ -584,6 +592,7 @@ export function EnhancedPdfFormCreator() {
                   className="hidden"
                   accept="image/png,image/jpeg"
                   onChange={handleLogoUpload}
+
                 />
                 {logo && <p className="text-sm text-gray-500 mt-2">Logo uploaded: {logo.name}</p>}
               </div>
